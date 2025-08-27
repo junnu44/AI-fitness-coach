@@ -1,0 +1,201 @@
+exercise,category,body_part,intensity,duration_min,calories_burned
+Lunges,Strength,Lower,Advanced,22,199
+Jump Rope,Cardio,Full Body,Intermediate,13,68
+Squats,Strength,Lower,Advanced,19,118
+Running,Cardio,Full Body,Beginner,7,37
+Cycling,Cardio,Lower,Advanced,22,115
+Lunges,Strength,Lower,Intermediate,12,70
+Leg Raises,Core,Core,Beginner,23,204
+Cycling,Cardio,Lower,Beginner,12,89
+Deadlift,Strength,Full Body,Intermediate,27,265
+Burpees,HIIT,Full Body,Advanced,22,186
+Bench Press,Strength,Upper,Beginner,5,32
+Deadlift,Strength,Full Body,Intermediate,14,112
+Jump Rope,Cardio,Full Body,Advanced,16,83
+Running,Cardio,Full Body,Advanced,13,109
+Burpees,HIIT,Full Body,Advanced,20,107
+Deadlift,Strength,Full Body,Beginner,15,92
+Sun Salutation,Yoga,Full Body,Intermediate,29,177
+Sun Salutation,Yoga,Full Body,Beginner,26,135
+Jump Rope,Cardio,Full Body,Intermediate,17,157
+Plank,Core,Core,Intermediate,16,154
+Mountain Climbers,HIIT,Core,Beginner,29,168
+Sun Salutation,Yoga,Full Body,Advanced,8,61
+Push-ups,Strength,Upper,Advanced,26,171
+Burpees,HIIT,Full Body,Intermediate,14,118
+Mountain Climbers,HIIT,Core,Beginner,14,134
+Push-ups,Strength,Upper,Beginner,26,218
+Push-ups,Strength,Upper,Beginner,24,146
+Leg Raises,Core,Core,Beginner,7,40
+Burpees,HIIT,Full Body,Beginner,11,56
+Cycling,Cardio,Lower,Intermediate,29,252
+Lunges,Strength,Lower,Advanced,14,133
+Squats,Strength,Lower,Intermediate,10,80
+Jumping Jacks,Cardio,Full Body,Beginner,19,159
+Sun Salutation,Yoga,Full Body,Intermediate,30,232
+Plank,Core,Core,Intermediate,28,175
+Leg Raises,Core,Core,Advanced,18,163
+Cycling,Cardio,Lower,Intermediate,15,140
+Running,Cardio,Full Body,Beginner,8,62
+Jump Rope,Cardio,Full Body,Advanced,26,144
+Push-ups,Strength,Upper,Intermediate,23,167
+Jumping Jacks,Cardio,Full Body,Beginner,9,59
+Jumping Jacks,Cardio,Full Body,Beginner,11,84
+Jumping Jacks,Cardio,Full Body,Beginner,16,148
+Mountain Climbers,HIIT,Core,Advanced,10,84
+Cycling,Cardio,Lower,Advanced,16,139
+Bicep Curls,Strength,Upper,Advanced,30,239
+Bench Press,Strength,Upper,Advanced,22,208
+Bench Press,Strength,Upper,Beginner,29,182
+Leg Raises,Core,Core,Intermediate,19,128
+Bench Press,Strength,Upper,Intermediate,23,155
+Push-ups,Strength,Upper,Beginner,16,155
+Burpees,HIIT,Full Body,Intermediate,5,26
+Running,Cardio,Full Body,Beginner,19,146
+Sun Salutation,Yoga,Full Body,Beginner,6,45
+Leg Raises,Core,Core,Intermediate,12,78
+Jump Rope,Cardio,Full Body,Beginner,5,26
+Jump Rope,Cardio,Full Body,Beginner,9,45
+Lunges,Strength,Lower,Beginner,9,51
+Cycling,Cardio,Lower,Intermediate,13,129
+Burpees,HIIT,Full Body,Intermediate,28,178
+Mountain Climbers,HIIT,Core,Advanced,10,55
+Deadlift,Strength,Full Body,Beginner,30,234
+Jumping Jacks,Cardio,Full Body,Beginner,5,38
+Squats,Strength,Lower,Intermediate,6,38
+Sun Salutation,Yoga,Full Body,Beginner,23,132
+Cycling,Cardio,Lower,Advanced,5,44
+Bicep Curls,Strength,Upper,Beginner,25,140
+Sun Salutation,Yoga,Full Body,Advanced,27,246
+Push-ups,Strength,Upper,Beginner,23,185
+Leg Raises,Core,Core,Advanced,29,236
+Leg Raises,Core,Core,Intermediate,29,235
+Running,Cardio,Full Body,Intermediate,27,193
+Jumping Jacks,Cardio,Full Body,Intermediate,23,153
+Sun Salutation,Yoga,Full Body,Advanced,27,214
+Push-ups,Strength,Upper,Intermediate,9,69
+Push-ups,Strength,Upper,Beginner,18,133
+Lunges,Strength,Lower,Intermediate,8,51
+Sun Salutation,Yoga,Full Body,Intermediate,18,166
+Push-ups,Strength,Upper,Advanced,18,115
+Jump Rope,Cardio,Full Body,Beginner,11,65
+Bench Press,Strength,Upper,Intermediate,11,102
+Burpees,HIIT,Full Body,Intermediate,13,113
+Squats,Strength,Lower,Beginner,30,238
+Bicep Curls,Strength,Upper,Intermediate,25,236
+Squats,Strength,Lower,Advanced,28,145
+Running,Cardio,Full Body,Intermediate,17,137
+Running,Cardio,Full Body,Advanced,18,161
+Running,Cardio,Full Body,Beginner,26,188
+Burpees,HIIT,Full Body,Advanced,9,71
+Burpees,HIIT,Full Body,Advanced,8,55
+Deadlift,Strength,Full Body,Beginner,18,137
+Burpees,HIIT,Full Body,Intermediate,19,139
+Sun Salutation,Yoga,Full Body,Intermediate,26,210
+Mountain Climbers,HIIT,Core,Beginner,25,198
+Squats,Strength,Lower,Intermediate,16,105
+Burpees,HIIT,Full Body,Intermediate,16,84
+Bench Press,Strength,Upper,Beginner,12,77
+Lunges,Strength,Lower,Beginner,8,75
+Cycling,Cardio,Lower,Beginner,22,210
+Deadlift,Strength,Full Body,Intermediate,9,50
+Lunges,Strength,Lower,Beginner,24,200
+Push-ups,Strength,Upper,Beginner,24,137
+Lunges,Strength,Lower,Intermediate,6,38
+Lunges,Strength,Lower,Advanced,20,159
+Sun Salutation,Yoga,Full Body,Intermediate,23,215
+Burpees,HIIT,Full Body,Intermediate,25,242
+Burpees,HIIT,Full Body,Advanced,16,151
+Jump Rope,Cardio,Full Body,Beginner,25,213
+Mountain Climbers,HIIT,Core,Beginner,29,252
+Bicep Curls,Strength,Upper,Beginner,19,99
+Leg Raises,Core,Core,Beginner,26,246
+Bicep Curls,Strength,Upper,Advanced,10,91
+Plank,Core,Core,Intermediate,11,69
+Jump Rope,Cardio,Full Body,Intermediate,20,193
+Burpees,HIIT,Full Body,Intermediate,6,54
+Jump Rope,Cardio,Full Body,Intermediate,25,145
+Jumping Jacks,Cardio,Full Body,Intermediate,5,36
+Mountain Climbers,HIIT,Core,Advanced,21,108
+Running,Cardio,Full Body,Beginner,14,138
+Cycling,Cardio,Lower,Beginner,20,158
+Leg Raises,Core,Core,Advanced,26,205
+Bench Press,Strength,Upper,Intermediate,6,50
+Plank,Core,Core,Advanced,20,153
+Plank,Core,Core,Advanced,30,176
+Cycling,Cardio,Lower,Intermediate,13,110
+Leg Raises,Core,Core,Advanced,17,93
+Plank,Core,Core,Intermediate,21,119
+Burpees,HIIT,Full Body,Intermediate,26,246
+Running,Cardio,Full Body,Intermediate,15,107
+Cycling,Cardio,Lower,Intermediate,22,203
+Running,Cardio,Full Body,Beginner,22,201
+Cycling,Cardio,Lower,Beginner,12,95
+Bicep Curls,Strength,Upper,Beginner,5,26
+Bicep Curls,Strength,Upper,Intermediate,19,170
+Bicep Curls,Strength,Upper,Advanced,5,48
+Bicep Curls,Strength,Upper,Beginner,29,178
+Mountain Climbers,HIIT,Core,Intermediate,29,152
+Sun Salutation,Yoga,Full Body,Advanced,10,79
+Running,Cardio,Full Body,Advanced,8,63
+Jump Rope,Cardio,Full Body,Advanced,25,205
+Burpees,HIIT,Full Body,Beginner,8,61
+Jumping Jacks,Cardio,Full Body,Advanced,11,87
+Sun Salutation,Yoga,Full Body,Beginner,13,69
+Plank,Core,Core,Intermediate,18,111
+Deadlift,Strength,Full Body,Beginner,22,164
+Lunges,Strength,Lower,Intermediate,16,155
+Jump Rope,Cardio,Full Body,Advanced,20,138
+Burpees,HIIT,Full Body,Intermediate,17,138
+Squats,Strength,Lower,Beginner,20,134
+Plank,Core,Core,Advanced,12,61
+Squats,Strength,Lower,Beginner,16,81
+Jump Rope,Cardio,Full Body,Intermediate,7,61
+Jump Rope,Cardio,Full Body,Intermediate,6,32
+Bicep Curls,Strength,Upper,Beginner,20,148
+Leg Raises,Core,Core,Advanced,12,94
+Squats,Strength,Lower,Beginner,24,128
+Cycling,Cardio,Lower,Advanced,6,44
+Deadlift,Strength,Full Body,Advanced,15,128
+Mountain Climbers,HIIT,Core,Intermediate,11,100
+Lunges,Strength,Lower,Advanced,30,270
+Jump Rope,Cardio,Full Body,Beginner,10,89
+Bench Press,Strength,Upper,Beginner,11,81
+Lunges,Strength,Lower,Advanced,5,46
+Plank,Core,Core,Intermediate,30,233
+Push-ups,Strength,Upper,Intermediate,17,140
+Cycling,Cardio,Lower,Beginner,14,112
+Jumping Jacks,Cardio,Full Body,Beginner,19,114
+Plank,Core,Core,Beginner,22,183
+Plank,Core,Core,Beginner,12,67
+Burpees,HIIT,Full Body,Advanced,10,99
+Leg Raises,Core,Core,Beginner,11,73
+Bench Press,Strength,Upper,Beginner,28,241
+Deadlift,Strength,Full Body,Advanced,30,210
+Squats,Strength,Lower,Beginner,7,40
+Burpees,HIIT,Full Body,Beginner,22,120
+Jumping Jacks,Cardio,Full Body,Advanced,25,223
+Sun Salutation,Yoga,Full Body,Intermediate,23,227
+Cycling,Cardio,Lower,Intermediate,27,183
+Burpees,HIIT,Full Body,Beginner,5,44
+Squats,Strength,Lower,Intermediate,12,89
+Cycling,Cardio,Lower,Beginner,5,45
+Bicep Curls,Strength,Upper,Beginner,27,212
+Leg Raises,Core,Core,Intermediate,22,212
+Leg Raises,Core,Core,Beginner,28,258
+Push-ups,Strength,Upper,Advanced,16,152
+Lunges,Strength,Lower,Beginner,5,27
+Plank,Core,Core,Advanced,15,89
+Sun Salutation,Yoga,Full Body,Beginner,19,131
+Bicep Curls,Strength,Upper,Beginner,18,102
+Bicep Curls,Strength,Upper,Beginner,10,82
+Push-ups,Strength,Upper,Advanced,12,78
+Lunges,Strength,Lower,Beginner,29,288
+Leg Raises,Core,Core,Beginner,19,128
+Push-ups,Strength,Upper,Advanced,7,41
+Push-ups,Strength,Upper,Beginner,21,194
+Leg Raises,Core,Core,Beginner,23,213
+Push-ups,Strength,Upper,Intermediate,5,39
+Sun Salutation,Yoga,Full Body,Intermediate,25,247
+Squats,Strength,Lower,Intermediate,13,78
+Jump Rope,Cardio,Full Body,Advanced,19,144
