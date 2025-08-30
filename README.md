@@ -24,8 +24,4 @@
    streamlit run app.py
    ```
 
-## Next steps (recommended)
-- Integrate MediaPipe for real-time pose detection and rep counting.
-- Add persistence (user accounts + progress tracking).
-- Improve diet assembly algorithm to match target calories automatically.
-- Add audio cues and better UI/UX.
+
