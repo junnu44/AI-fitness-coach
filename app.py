@@ -1,97 +1,108 @@
-
-import streamlit as st
+from flask import Flask, render_template, request, send_from_directory
 import pandas as pd
-import numpy as np
+import os, math
 from pathlib import Path
 
-st.set_page_config(page_title='AI Virtual Fitness Coach', layout='wide')
-st.title('AI Virtual Fitness Coach — Basic Rule-Based Demo')
-
 BASE_DIR = Path(__file__).resolve().parent
-data_dir = BASE_DIR / 'data'
+DATA_DIR = BASE_DIR / "data"
 
-# Load sample datasets
-df_workouts = pd.read_csv(data_dir / 'workouts.csv')
-df_meals = pd.read_csv(data_dir / 'nutrition.csv')
+app = Flask(__name__, static_folder="static", template_folder="templates")
 
-# Sidebar - user inputs
-st.sidebar.header('Your profile')
-age = st.sidebar.number_input('Age', min_value=12, max_value=90, value=25)
-gender = st.sidebar.selectbox('Gender', ['Male', 'Female', 'Other'])
-weight = st.sidebar.number_input('Weight (kg)', min_value=30.0, max_value=200.0, value=70.0)
-height = st.sidebar.number_input('Height (cm)', min_value=120.0, max_value=230.0, value=175.0)
-goal = st.sidebar.selectbox('Fitness Goal', ['Weight Loss', 'Muscle Gain', 'General Fitness'])
-activity = st.sidebar.selectbox('Activity Level', ['Sedentary', 'Light', 'Moderate', 'Active'])
-days_per_week = st.sidebar.slider('Days per week to train', 1, 7, 4)
+# Load datasets
+workouts = pd.read_csv(DATA_DIR / "workouts.csv")
+nutrition = pd.read_csv(DATA_DIR / "nutrition.csv")
 
-# Helper functions
-def compute_bmi(w, h_cm):
-    h_m = h_cm / 100.0
-    return w / (h_m * h_m)
+activity_multipliers = {
+    "Sedentary": 1.2,
+    "Light": 1.375,
+    "Moderate": 1.55,
+    "Active": 1.725
+}
 
-def bmr_mifflin(age, weight, height, gender):
-    # Mifflin-St Jeor Equation
-    if gender.lower().startswith('m'):
-        bmr = 10 * weight + 6.25 * height - 5 * age + 5
+def calc_bmr(age, sex, weight, height):
+    # Mifflin-St Jeor
+    if sex.lower().startswith("m"):
+        return 10*weight + 6.25*height - 5*age + 5
     else:
-        bmr = 10 * weight + 6.25 * height - 5 * age - 161
-    return bmr
+        return 10*weight + 6.25*height - 5*age - 161
 
-activity_factors = {'Sedentary': 1.2, 'Light': 1.375, 'Moderate': 1.55, 'Active': 1.725}
+def recommend_meals(target_cal, goal):
+    # pick one meal per meal_type for given goal; attempt to match calories
+    df = nutrition[nutrition["target"].str.lower() == goal.lower()]
+    if df.empty:
+        df = nutrition.copy()
+    plan = []
+    for meal_type in ["Breakfast","Lunch","Snack","Dinner"]:
+        subset = df[df["meal_type"] == meal_type]
+        if subset.empty:
+            subset = nutrition[nutrition["meal_type"] == meal_type]
+        if not subset.empty:
+            plan.append(subset.sample(n=1, random_state=7).iloc[0].to_dict())
+    # if total calories < target, try to top-up with extra snacks
+    total = sum([m["calories"] for m in plan])
+    snacks = df[df["meal_type"] == "Snack"]
+    i = 0
+    while total < target_cal - 300 and not snacks.empty and i < 5:
+        s = snacks.sample(n=1, random_state=10+i).iloc[0].to_dict()
+        plan.append(s)
+        total += s["calories"]
+        i += 1
+    return plan, total
 
-bmi = compute_bmi(weight, height)
-bmr = bmr_mifflin(age, weight, height, gender)
-maintenance_calories = int(bmr * activity_factors[activity])
+@app.route("/")
+def index():
+    return render_template("index.html")
 
-if goal == 'Weight Loss':
-    calorie_target = max(1200, maintenance_calories - 500)
-elif goal == 'Muscle Gain':
-    calorie_target = maintenance_calories + 300
-else:
-    calorie_target = maintenance_calories
+@app.route("/recommend", methods=["POST"])
+def recommend():
+    age = int(request.form.get("age", 25))
+    sex = request.form.get("sex", "Male")
+    weight = float(request.form.get("weight", 70))
+    height = float(request.form.get("height", 170))
+    activity = request.form.get("activity", "Moderate")
+    goal = request.form.get("goal", "General Fitness")
 
-# Show summary
-st.subheader('Profile Summary')
-col1, col2, col3 = st.columns(3)
-col1.metric('BMI', f"{bmi:.1f}")
-col2.metric('Maintenance Calories', f"{maintenance_calories} kcal")
-col3.metric('Target Calories', f"{calorie_target} kcal")
+    bmr = calc_bmr(age, sex, weight, height)
+    tdee = int(bmr * activity_multipliers.get(activity, 1.55))
+
+    if goal.lower() == "weight loss":
+        target_cal = max(1200, tdee - 500)
+    elif goal.lower() == "muscle gain":
+        target_cal = tdee + 300
+    else:
+        target_cal = tdee
+
+    # simple macro split
+    protein_g = round(1.6 * weight)
+    protein_cal = protein_g * 4
+    fat_cal = 0.25 * target_cal
+    fat_g = round(fat_cal / 9)
+    remaining = target_cal - protein_cal - fat_cal
+    carbs_g = max(0, round(remaining / 4))
+
+    # workouts selection
+    w_df = workouts[workouts["target"].str.lower() == goal.lower()]
+    if w_df.empty:
+        w_df = workouts.copy()
+    n_ex = min(6, max(3, int(request.form.get("days_per_week", 4))))
+    n_ex = min(n_ex, len(w_df))  # prevent sampling more than available
+    selected_workouts = w_df.sample(n=n_ex, random_state=5).to_dict(orient="records")
 
 
-# Workout plan (rule-based): pick top exercises for the goal
-st.subheader('Suggested Workout Plan')
-workouts = df_workouts[df_workouts['target'] == goal].reset_index(drop=True)
-# choose N exercises based on days_per_week (simple rule)
-n_ex = min(5, max(3, days_per_week))
-selected = workouts.head(n_ex)
-selected = selected[['exercise', 'category', 'duration_mins', 'reps_or_time', 'description']]
-st.table(selected)
+    meal_plan, total_cal = recommend_meals(target_cal, goal)
 
-# Diet plan (simple selection)
-st.subheader('Sample Diet Plan')
-# pick one meal for each meal_type
-meals_goal = df_meals[df_meals['goal'] == goal]
-breakfast = meals_goal[meals_goal['meal_type'] == 'Breakfast'].sample(n=1, random_state=1).iloc[0]
-lunch = meals_goal[meals_goal['meal_type'] == 'Lunch'].sample(n=1, random_state=2).iloc[0]
-snack = meals_goal[meals_goal['meal_type'] == 'Snack'].sample(n=1, random_state=3).iloc[0]
-dinner = meals_goal[meals_goal['meal_type'] == 'Dinner'].sample(n=1, random_state=4).iloc[0]
+    result = {
+        "age": age, "sex": sex, "weight": weight, "height": height,
+        "activity": activity, "goal": goal,
+        "bmr": int(round(bmr)), "tdee": tdee, "target_cal": target_cal,
+        "protein_g": protein_g, "carbs_g": carbs_g, "fat_g": fat_g,
+        "workouts": selected_workouts, "meals": meal_plan, "total_meal_cal": int(total_cal)
+    }
+    return render_template("result.html", result=result)
 
-df_plan = pd.DataFrame([breakfast, lunch, snack, dinner])[['meal_type', 'meal', 'calories', 'protein_g', 'carbs_g', 'fats_g', 'items']]
-df_plan = df_plan.rename(columns={'meal_type': 'Meal Type'})
-total_cal = df_plan['calories'].sum()
-st.table(df_plan)
-st.write(f"Total sample calories (sum of meals shown): {int(total_cal)} kcal")
-st.info('Note: This is a simple sample plan. For production, build a meal-assembly algorithm that matches target calories.')
+@app.route('/static/<path:filename>')
+def static_files(filename):
+    return send_from_directory(BASE_DIR / "static", filename)
 
-# Quick training plan summary
-st.subheader('Weekly Training Plan (example)')
-st.write(f"Train {days_per_week} days/week. Example split:")
-if goal == 'Muscle Gain':
-    st.write('- Day 1: Upper Body (Strength)\n- Day 2: Lower Body (Strength)\n- Day 3: Rest or Light Cardio\n- Day 4: Full Body Strength\n- Day 5: Active Recovery/Yoga')
-elif goal == 'Weight Loss':
-    st.write('- Alternate cardio + HIIT + strength: e.g., Cardio, Strength, HIIT, Rest, Cardio')
-else:
-    st.write('- Mix of strength, cardio & mobility across the week. Include yoga or stretching.')
-
-st.markdown('---')
-st.caption('Built with sample CSVs. Next: integrate Mediapipe for pose detection and real-time rep counting.')
+if __name__ == "__main__":
+    app.run(debug=True)

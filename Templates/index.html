@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>AI Fitness Coach — Starter</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+  <body>
+    <div class="page">
+      <header class="hero">
+        <h1>AI Fitness Coach</h1>
+        <p>Personalized workout & nutrition plans — starter edition</p>
+      </header>
+
+      <main class="container">
+        <section class="card form-card">
+          <h2>Tell us about yourself</h2>
+          <form action="/recommend" method="post" id="profileForm">
+            <div class="row">
+              <label>Age<input type="number" name="age" value="25" required></label>
+              <label>Sex
+                <select name="sex">
+                  <option>Male</option><option>Female</option><option>Other</option>
+                </select>
+              </label>
+            </div>
+
+            <div class="row">
+              <label>Weight (kg)<input type="number" name="weight" value="70" step="0.1" required></label>
+              <label>Height (cm)<input type="number" name="height" value="170" step="0.1" required></label>
+            </div>
+
+            <div class="row">
+              <label>Activity
+                <select name="activity">
+                  <option>Sedentary</option><option>Light</option><option selected>Moderate</option><option>Active</option>
+                </select>
+              </label>
+
+              <label>Goal
+                <select name="goal">
+                  <option>Weight Loss</option><option>Muscle Gain</option><option selected>General Fitness</option>
+                </select>
+              </label>
+            </div>
+
+            <div class="row">
+              <label>Days per week to train
+                <input type="number" name="days_per_week" min="1" max="7" value="4">
+              </label>
+            </div>
+
+            <div class="actions">
+              <button type="submit" class="btn-primary">Get Recommendation</button>
+            </div>
+          </form>
+        </section>
+
+        <section class="card info-card">
+          <h3>How it works</h3>
+          <p>We use Mifflin–St Jeor to estimate calories and a rule-based recommender to pick workouts and meals from our sample dataset. This starter is fully editable.</p>
+        </section>
+      </main>
+
+      <footer class="footer">
+        <p>Made for JALA Academy practice — customize it as you like.</p>
+      </footer>
+    </div>
+  </body>
+</html>

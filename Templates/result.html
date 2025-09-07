@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Recommendations — AI Fitness Coach</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+  <body>
+    <div class="page">
+      <header class="hero small">
+        <h1>Your Personalized Plan</h1>
+        <p><a href="/">← Edit profile</a></p>
+      </header>
+
+      <main class="container">
+        <section class="card summary">
+          <h2>Calories & Macros</h2>
+          <div class="metrics">
+            <div><strong>BMR</strong><div>{{ result.bmr }} kcal</div></div>
+            <div><strong>TDEE</strong><div>{{ result.tdee }} kcal</div></div>
+            <div><strong>Target</strong><div>{{ result.target_cal }} kcal</div></div>
+          </div>
+          <div class="macros">
+            <canvas id="macChart" width="400" height="200"></canvas>
+          </div>
+        </section>
+
+        <section class="card workouts">
+          <h2>Workout Plan</h2>
+          <div class="grid">
+            {% for w in result.workouts %}
+            <div class="work-card">
+              <h3>{{ w.exercise }}</h3>
+              <p class="muted">{{ w.category }} • {{ w.duration_mins }} mins</p>
+              <p>{{ w.reps_or_time }}</p>
+              <p class="small">{{ w.description }}</p>
+            </div>
+            {% endfor %}
+          </div>
+        </section>
+
+        <section class="card meals">
+          <h2>Sample Meal Plan ({{ result.total_meal_cal }} kcal shown)</h2>
+          <div class="meal-list">
+            {% for m in result.meals %}
+            <div class="meal-item">
+              <h4>{{ m.meal_type }} — {{ m.meal }}</h4>
+              <p class="muted">{{ m.items }} • {{ m.calories }} kcal</p>
+              <p>Protein: {{ m.protein_g }}g • Carbs: {{ m.carbs_g }}g • Fats: {{ m.fats_g }}g</p>
+            </div>
+            {% endfor %}
+          </div>
+        </section>
+
+      </main>
+
+      <footer class="footer small">
+        <p>Customize datasets in <code>/data</code> and tweak <code>app.py</code> for ML integration.</p>
+      </footer>
+    </div>
+
+    <script>
+      // draw macros pie chart using template variables
+      const protein = {{ result.protein_g }};
+      const carbs = {{ result.carbs_g }};
+      const fats = {{ result.fat_g }};
+      const ctx = document.getElementById('macChart').getContext('2d');
+      new Chart(ctx, {
+        type: 'pie',
+        data: {
+          labels: ['Protein (g)','Carbs (g)','Fats (g)'],
+          datasets: [{
+            data: [protein, carbs, fats],
+            backgroundColor: ['#4CAF50','#2196F3','#FF9800']
+          }]
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: { position: 'bottom' }
+          }
+        }
+      });
+    </script>
+
+  </body>
+</html>
